@@ -1,0 +1,31 @@
+apply plugin: 'java'
+
+dependencies {
+    runtime project(':jcl-user')
+    runtime project(':jul-user')
+    runtime project(':log4j1-user')
+    runtime project(':log4j2-user')
+    runtime project(':slf4j-user')
+
+    testCompile "org.apache.logging.log4j:log4j-api:${log4j2Version}"
+    testCompile "org.apache.logging.log4j:log4j-core:${log4j2Version}"
+    runtime "org.apache.logging.log4j:log4j-jcl:${log4j2Version}"
+    runtime "org.apache.logging.log4j:log4j-1.2-api:${log4j2Version}"
+    runtime "org.apache.logging.log4j:log4j-slf4j-impl:${log4j2Version}"
+    runtime "org.apache.logging.log4j:log4j-jul:${log4j2Version}"
+
+    testCompile project(':common')
+    
+    testCompile "junit:junit:4.12"
+}
+
+test {
+    useJUnit()
+    
+    //this needs to be here because gradle initializes jul before unit tests have a chance to run
+    systemProperty "java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager"
+    
+    testLogging {
+        events "started", "passed", "skipped", "failed"
+    }
+}

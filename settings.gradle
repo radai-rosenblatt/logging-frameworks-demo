@@ -1,0 +1,17 @@
+rootProject.name = 'logging-frameworks-demo'
+
+include 'common'
+include 'log4j1-user'
+include 'log4j2-user' 
+include 'slf4j-user'
+include 'jul-user'
+include 'jcl-user'
+include 'log4j2-aggregator'
+include 'logback-aggregator'
+
+def gradleVer = GradleVersion.current()
+def desiredVer = GradleVersion.version("4.6")
+if (gradleVer < desiredVer) {
+    throw new GradleScriptException("this build cannot be run with gradle < " + desiredVer + ". current " +
+            "detected version is " + gradleVer + ". use newer gradle or (better yet) use the wrapper", null)
+}

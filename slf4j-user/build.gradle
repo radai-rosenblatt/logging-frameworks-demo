@@ -1,0 +1,6 @@
+apply plugin: 'java-library'
+
+dependencies {
+    api project(':common')
+    implementation "org.slf4j:slf4j-api:${slf4jVersion}" 
+}

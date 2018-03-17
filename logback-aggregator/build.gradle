@@ -1,0 +1,30 @@
+apply plugin: 'java'
+
+dependencies {
+    runtime project(':jcl-user')
+    runtime project(':jul-user')
+    runtime project(':log4j1-user')
+    runtime project(':log4j2-user')
+    runtime project(':slf4j-user')
+
+    runtime "ch.qos.logback:logback-classic:${logbackVersion}"
+    
+    //see https://www.slf4j.org/legacy.html
+    runtime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    runtime "org.slf4j:log4j-over-slf4j:${slf4jVersion}"
+    runtime "org.apache.logging.log4j:log4j-to-slf4j:${log4j2Version}"
+    testCompile "org.slf4j:jul-to-slf4j:${slf4jVersion}"
+    
+    testCompile project(':common')
+    
+    testCompile "junit:junit:4.12"
+}
+
+test {
+    useJUnit()
+
+    // Show test results.
+    testLogging {
+        events "started", "passed", "skipped", "failed"
+    }
+}
