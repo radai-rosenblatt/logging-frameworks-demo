@@ -6,6 +6,7 @@ include 'log4j2-user'
 include 'slf4j-user'
 include 'jul-user'
 include 'jcl-user'
+include 'tinylog1-user'
 include 'log4j2-aggregator'
 include 'logback-aggregator'
 
